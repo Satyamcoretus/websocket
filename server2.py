@@ -4,10 +4,9 @@ from websockets.server import serve
 async def echo(websocket):
     print(websocket)
     async for message in websocket:
-
-        await websocket.send('received')
-        response = 'This is what server respond ,HELLO, and this is what you respond '
+        response = f'This is what server respond ,HELLO, and this is what you respond ->\n{message}'
         await websocket.send(response)
+
 
 async def main():
     async with serve(echo, "localhost", 8765):
